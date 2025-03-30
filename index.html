@@ -4,8 +4,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="stylesheet" href="style.css">
-    <title>Biozia's Portfolio</title>
+    <title>Bozia's Portfolio</title>
     <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
     <script type="text/javascript">
         (function() {
@@ -14,108 +15,331 @@
             });
         })();
     </script>
-        <script type="text/javascript">
-            window.onload = function() {
-                document.getElementById('contact-form').addEventListener('submit', function(event) {
-                    event.preventDefault();
-                    emailjs.sendForm('service_gw94krl', 'template_gcta044', this)
-                        .then(() => {
-                            console.log('SUCCESS!');
-                        }, (error) => {
-                            console.log('FAILED...', error);
-                        });
-                });
-            }
-        </script>
+    <script type="text/javascript">
+        window.onload = function() {
+            document.getElementById('contact-form').addEventListener('submit', function(event) {
+                event.preventDefault();
+                // Add loading state
+                const submitBtn = document.querySelector('#contact-form .button');
+                submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Sending...';
+                submitBtn.disabled = true;
+                
+                emailjs.sendForm('service_gw94krl', 'template_gcta044', this)
+                    .then(() => {
+                        submitBtn.innerHTML = '<i class="fas fa-check"></i> Sent!';
+                        setTimeout(() => {
+                            submitBtn.innerHTML = 'Send Message';
+                            submitBtn.disabled = false;
+                        }, 3000);
+                        // Reset form
+                        document.getElementById('contact-form').reset();
+                    }, (error) => {
+                        console.log('FAILED...', error);
+                        submitBtn.innerHTML = 'Try Again';
+                        submitBtn.disabled = false;
+                    });
+            });
+        }
+    </script>
 </head>
 
 <body>
     <header>
-        <h3>Biozia's Portfolio</h3>
-        <nav>
-            <a href="#about">About me</a>
-            <a href="#projects">Projects</a>
-            <a href="#contact">Contact</a>
-        </nav>
+        <div class="header-container">
+            <h3 class="logo">Bozia<span>.</span></h3>
+            <nav>
+                <a href="#about"><i class="fas fa-user"></i> About</a>
+                <a href="#projects"><i class="fas fa-code"></i> Projects</a>
+                <a href="#contact"><i class="fas fa-envelope"></i> Contact</a>
+            </nav>
+            <button class="menu-toggle" aria-label="Toggle menu">
+                <i class="fas fa-bars"></i>
+            </button>
+        </div>
     </header>
     <main>
-        <section id="about">
-            <div class="aboutme-container">
-                <h4>About me</h4>
-                <p>Hi there! 😊 My name is Bozia, and I'm 16 years old. I'm a programmer in various fields, including
-                    web development, SQL databases, and creating bots on Discord. I've also dabbled in game development,
-                    so I have a little bit of experience in that area too. I'm a fast learner, and I'm always looking
-                    for ways to learn more. If there's something I don't understand, I'll find a way to figure it out.
-                </p>
-                <p>I've dabbled with HTML5, CSS3, JavaScript, SQL, Python, MongoDB, and a bit of C#. I'm passionate
-                    about writing clean, efficient code.</p>
-                <p>When I'm not coding, you might find me playing various computer games, like Minecraft, Phasmophobia,
-                    Spiderman, or GTA V.</p>
+        <section id="hero">
+            <div class="hero-content">
+                <h1>Hello, I'm <span>Bozia</span></h1>
+                <h2>Full Stack Developer & Creative Coder</h2>
+                <p>I build digital experiences that are fast, accessible, and visually appealing.</p>
+                <div class="hero-buttons">
+                    <a href="#projects" class="button primary">View My Work</a>
+                    <a href="#contact" class="button secondary">Contact Me</a>
+                </div>
+            </div>
+            <div class="hero-image">
+                <div class="glow"></div>
+                <div class="avatar"></div>
             </div>
         </section>
+        
+        <section id="about">
+            <div class="section-header">
+                <h4>About Me</h4>
+                <p class="section-subtitle">Get to know me better</p>
+            </div>
+            <div class="aboutme-container">
+                <div class="about-content">
+                    <p>Hi there! <span class="emoji">👋</span> I'm Bozia, a 16-year-old passionate programmer with expertise in web development, databases, and bot creation. I thrive on solving problems and building efficient, scalable solutions.</p>
+                    
+                    <div class="skills-section">
+                        <h5>My Skills</h5>
+                        <div class="skills-grid">
+                            <div class="skill-item">
+                                <i class="fab fa-html5"></i>
+                                <span>HTML5</span>
+                            </div>
+                            <div class="skill-item">
+                                <i class="fab fa-css3-alt"></i>
+                                <span>CSS3</span>
+                            </div>
+                            <div class="skill-item">
+                                <i class="fab fa-js"></i>
+                                <span>JavaScript</span>
+                            </div>
+                            <div class="skill-item">
+                                <i class="fas fa-database"></i>
+                                <span>SQL</span>
+                            </div>
+                            <div class="skill-item">
+                                <i class="fab fa-python"></i>
+                                <span>Python</span>
+                            </div>
+                            <div class="skill-item">
+                                <i class="fas fa-leaf"></i>
+                                <span>MongoDB</span>
+                            </div>
+                            <div class="skill-item">
+                                <i class="fas fa-code"></i>
+                                <span>C#</span>
+                            </div>
+                            <div class="skill-item">
+                                <i class="fab fa-node-js"></i>
+                                <span>Node.js</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <p>When I'm not coding, you can find me gaming (Minecraft, Phasmophobia, Spider-Man), learning new technologies, or contributing to open-source projects.</p>
+                </div>
+                <div class="about-image">
+                    <div class="decoration-circle"></div>
+                    <div class="decoration-dots"></div>
+                </div>
+            </div>
+        </section>
+        
         <section id="projects">
-            <h4>My Projects</h4>
+            <div class="section-header">
+                <h4>My Projects</h4>
+                <p class="section-subtitle">Some of my recent work</p>
+            </div>
             <div class="projects-container">
                 <div class="project-card">
-                    <div class="project-image">Project 1 Image</div>
+                    <div class="project-image">
+                        <img src="ihf.png" alt="Pixel-Click Game"/>
+                        <div class="project-links">
+                            <a href="https://github.com/BoziaO/pixel-click" class="project-link"><i class="fab fa-github"></i></a>
+                        </div>
+                    </div>
                     <div class="project-info">
-                        <h5>EMPTY</h5>
-                        <p></p>
+                        <div class="project-tags">
+                            <span class="tag">C#</span>
+                            <span class="tag">Unity</span>
+                            <span class="tag">Game</span>
+                        </div>
+                        <h5>Pixel-Click</h5>
+                        <p>Click. Collect. Conquer Bosses. Upgrade! A simple yet addictive retro-style clicker game with RPG elements. Can you defeat all bosses and achieve infinite wealth?.</p>
+                        <a href="#" class="project-details">View Details <i class="fas fa-arrow-right"></i></a>
                     </div>
                 </div>
+                
                 <div class="project-card">
-                    <div class="project-image">Project 2 Image</div>
+                    <div class="project-image">
+                        <div class="placeholder-image">
+                            <i class="fas fa-music"></i>
+                        </div>
+                        <div class="project-links">
+                            <a href="#" class="project-link"><i class="fas fa-external-link-alt"></i></a>
+                            <a href="#" class="project-link"><i class="fab fa-github"></i></a>
+                        </div>
+                    </div>
                     <div class="project-info">
-                        <h5>EMPTY</h5>
-                        <p></p>
+                        <div class="project-tags">
+                            <span class="tag"></span>
+                            <span class="tag"></span>
+                        </div>
+                        <h5>BoziaMusic</h5>
+                        <p>In development</p>
+                        <a href="#" class="project-details">View Details <i class="fas fa-arrow-right"></i></a>
                     </div>
                 </div>
+                
                 <div class="project-card">
-                    <div class="project-image">Project 3 Image</div>
+                    <div class="project-image">
+                        <div class="placeholder-image">
+                            <i class="fas fa-gamepad"></i>
+                        </div>
+                        <div class="project-links">
+                            <a href="#" class="project-link"><i class="fas fa-external-link-alt"></i></a>
+                            <a href="#" class="project-link"><i class="fab fa-github"></i></a>
+                        </div>
+                    </div>
                     <div class="project-info">
-                        <h5>EMPTY</h5>
-                        <p></p>
+                        <div class="project-tags">
+                            <span class="tag"></span>
+                            <span class="tag"></span>
+                        </div>
+                        <h5>Coming Soon</h5>
+                        <p>An exciting new project currently in development. Stay tuned for more details!</p>
+                        <a href="#" class="project-details">View Details <i class="fas fa-arrow-right"></i></a>
                     </div>
                 </div>
             </div>
+            <div class="center-button">
+                <button class="button primary">More Projects <i class="fas fa-arrow-down"></i></button>
             </div>
         </section>
+        
         <section id="contact">
+            <div class="section-header">
+                <h4>Get In Touch</h4>
+                <p class="section-subtitle">Let's work together</p>
+            </div>
             <div class="contact-container">
-                <h4>Contact Me</h4>
-                <p>Have a project in mind or want to collaborate? Feel free to reach out!</p>
-
+                <div class="contact-info">
+                    <div class="info-card">
+                        <i class="fas fa-envelope"></i>
+                        <h5>Email</h5>
+                        <p>contact@Bozia.com</p>
+                    </div>
+                    <div class="info-card">
+                        <i class="fas fa-map-marker-alt"></i>
+                        <h5>Location</h5>
+                        <p>Based in Poland</p>
+                    </div>
+                    <div class="info-card">
+                        <i class="fas fa-clock"></i>
+                        <h5>Availability</h5>
+                        <p>Freelance projects</p>
+                    </div>
+                </div>
+                
                 <form id="contact-form">
                     <div class="form-group">
-                        <label for="name">Name</label>
-                        <input type="text" id="name" name="name" required>
+                        <label for="name">Your Name</label>
+                        <input type="text" id="name" name="name" required placeholder="John Doe">
                     </div>
                     <div class="form-group">
-                        <label for="email">Email</label>
-                        <input type="email" id="email" name="email" required>
+                        <label for="email">Email Address</label>
+                        <input type="email" id="email" name="email" required placeholder="john@example.com">
                     </div>
                     <div class="form-group full-width">
-                        <label for="message">Message</label>
-                        <input  type="text" id="message" name="message" required>
+                        <label for="message">Your Message</label>
+                        <textarea id="message" name="message" required rows="5" placeholder="Hello Bozia, I'd like to talk about..."></textarea>
                     </div>
                     <div class="form-group full-width">
-                        <input type="submit" class="button" value="Send Message">
+                        <button type="submit" class="button primary">
+                            <i class="fas fa-paper-plane"></i> Send Message
+                        </button>
                     </div>
                 </form>
-
-                <div class="contact-info">
-                    <p>You can also connect with me through:</p>
-                    <div class="social-links">
-                        <a href="https://github.com/BoziaO" aria-label="GitHub">GitHub</a>
-                        <a href="https://steamcommunity.com/id/BoziaX/" aria-label="Steam">Steam</a>
-                    </div>
+            </div>
+            
+            <div class="social-section">
+                <h5>Connect With Me</h5>
+                <div class="social-links">
+                    <a href="https://github.com/BoziaO" aria-label="GitHub" class="social-link github">
+                        <i class="fab fa-github"></i>
+                    </a>
+                    <a href="https://steamcommunity.com/id/BoziaX/" aria-label="Steam" class="social-link steam">
+                        <i class="fab fa-steam"></i>
+                    </a>
+                    <a href="#" aria-label="Twitter" class="social-link twitter">
+                        <i class="fab fa-twitter"></i>
+                    </a>
+                    <a href="#" aria-label="LinkedIn" class="social-link linkedin">
+                        <i class="fab fa-linkedin-in"></i>
+                    </a>
+                    <a href="#" aria-label="Discord" class="social-link discord">
+                        <i class="fab fa-discord"></i>
+                    </a>
                 </div>
             </div>
         </section>
     </main>
 
     <footer>
-        <p>&copy; 2025 Biozia's Portfolio. All rights reserved.</p>
+        <div class="footer-content">
+            <div class="footer-logo">
+                <h3>Bozia<span>.</span></h3>
+                <p>Building digital experiences with passion.</p>
+            </div>
+            <div class="footer-links">
+                <div class="links-column">
+                    <h5>Navigation</h5>
+                    <a href="#about">About</a>
+                    <a href="#projects">Projects</a>
+                    <a href="#contact">Contact</a>
+                </div>
+                <div class="links-column">
+                    <h5>Legal</h5>
+                    <a href="#">Privacy Policy</a>
+                    <a href="#">Terms of Service</a>
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2025 Bozia's Portfolio. All rights reserved.</p>
+            <div class="footer-social">
+                <a href="#"><i class="fab fa-github"></i></a>
+                <a href="#"><i class="fab fa-steam"></i></a>
+                <a href="#"><i class="fab fa-discord"></i></a>
+            </div>
+        </div>
     </footer>
+    
+    <script>
+        // Mobile menu toggle
+        document.querySelector('.menu-toggle').addEventListener('click', function() {
+            document.querySelector('nav').classList.toggle('active');
+            this.classList.toggle('active');
+        });
+        
+        // Smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+                
+                // Close mobile menu if open
+                if (document.querySelector('nav').classList.contains('active')) {
+                    document.querySelector('nav').classList.remove('active');
+                    document.querySelector('.menu-toggle').classList.remove('active');
+                }
+            });
+        });
+        
+        // Animation on scroll
+        const observerOptions = {
+            threshold: 0.1
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('animate');
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('section').forEach(section => {
+            observer.observe(section);
+        });
+    </script>
 </body>
 </html>
